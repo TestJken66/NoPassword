@@ -1,5 +1,6 @@
 package com.cwdt.junnan.nopassword_vivo;
 
+import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,7 +14,7 @@ import android.net.VpnService;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
-import android.support.annotation.RequiresApi;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +26,7 @@ public class NetFilterService extends VpnService {
 
     private enum Command {start, reload, stop}
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Get enabled
@@ -63,7 +64,7 @@ public class NetFilterService extends VpnService {
         return START_STICKY;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private ParcelFileDescriptor vpnStart() {
 
         // Build VPN service

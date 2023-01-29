@@ -3,6 +3,10 @@ package com.cwdt.junnan.nopassword_vivo;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -14,27 +18,18 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.util.List;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class MainActivity extends Activity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final int REQUEST_VPN = 1;
 
 
@@ -102,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         @Override
         protected void onPreExecute() {
-            // TODO Auto-generated method stub
             super.onPreExecute();
         }
 
@@ -110,20 +104,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         protected String doInBackground(String... params) {
             // TODO Auto-generated method stub
             String result = "";
-            try {
-                String url = params[0];
-                Request request = new Request.Builder().url(url).build();
-                OkHttpClient client = new OkHttpClient();
-                Response response = client.newCall(request).execute();
-                if (response.isSuccessful()) {
-                    return response.body().string();
-                } else {
-                    throw new IOException("Unexpected code " + response);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                String url = params[0];
+//                Request request = new Request.Builder().url(url).build();
+//                OkHttpClient client = new OkHttpClient();
+//                Response response = client.newCall(request).execute();
+//                if (response.isSuccessful()) {
+//                    return response.body().string();
+//                } else {
+//                    throw new IOException("Unexpected code " + response);
+//                }
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
             return result;
         }
@@ -162,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @RequiresApi(api = Build.VERSION_CODES.M)
+        @TargetApi(Build.VERSION_CODES.M)
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -189,10 +183,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     }
                     break;
                 case R.id.setting_l:
-                    final QMUITipDialog tipDialog = new QMUITipDialog.Builder(MainActivity.this)
-                            .setIconType(QMUITipDialog.Builder.ICON_TYPE_INFO)
-                            .setTipWord("没得设置")
-                            .create();
+//                    final QMUITipDialog tipDialog = new QMUITipDialog.Builder(MainActivity.this)
+//                            .setIconType(QMUITipDialog.Builder.ICON_TYPE_INFO)
+//                            .setTipWord("没得设置")
+//                            .create();
+//                    tipDialog.show();
+
+                    final Dialog tipDialog = new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("没得设置").create();
                     tipDialog.show();
                     v.postDelayed(new Runnable() {
                         @Override
@@ -202,19 +200,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     }, 1500);
                     break;
 
-                case R.id.upgrade_text:
-                    Uri uri = Uri.parse("https://www.coolapk.com/apk/com.cwdt.junnan.nopassword_vivo");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    PackageManager pm = getPackageManager();
-                    List<ResolveInfo> resolveList = pm.queryIntentActivities(intent, PackageManager.MATCH_ALL);
-
-                    if (resolveList.size() > 0) {
-                        String title = "请选择浏览器";
-                        Intent intentChooser = Intent.createChooser(intent, title);
-                        startActivity(intentChooser);
-                    }
-                    break;
+//                case R.id.upgrade_text:
+//                    Uri uri = Uri.parse("https://www.coolapk.com/apk/com.cwdt.junnan.nopassword_vivo");
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                    intent.addCategory(Intent.CATEGORY_DEFAULT);
+//                    PackageManager pm = getPackageManager();
+//                    List<ResolveInfo> resolveList = pm.queryIntentActivities(intent, PackageManager.MATCH_ALL);
+//
+//                    if (resolveList.size() > 0) {
+//                        String title = "请选择浏览器";
+//                        Intent intentChooser = Intent.createChooser(intent, title);
+//                        startActivity(intentChooser);
+//                    }
+//                    break;
             }
         }
     };
