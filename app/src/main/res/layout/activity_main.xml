@@ -170,30 +170,30 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/setting_l"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#ffffff"
-                    android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/setting_l"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="#ffffff"-->
+<!--                    android:orientation="vertical">-->
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/setting"
-                        android:tint="@color/status" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:src="@drawable/setting"-->
+<!--                        android:tint="@color/status" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="8dp"
-                        android:text="设置"
-                        android:textColor="@color/status"
-                        android:textSize="16sp" />
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="设置"-->
+<!--                        android:textColor="@color/status"-->
+<!--                        android:textSize="16sp" />-->
+<!--                </LinearLayout>-->
 
             </LinearLayout>
 

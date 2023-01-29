@@ -10,11 +10,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
-
 
 import java.io.IOException;
 import java.util.List;
@@ -179,7 +179,7 @@ public class NetFilterService extends VpnService {
     }
 
     public static void reload(String network, Context context) {
-        if (network == null || ("wifi".equals(network) == NetworkUtil.isWifiActive(context))) {
+        if (network == null || ("wifi".equals(network) == isWifiActive(context))) {
             Intent intent = new Intent(context, NetFilterService.class);
             intent.putExtra(EXTRA_COMMAND, Command.reload);
             context.startService(intent);
@@ -190,5 +190,15 @@ public class NetFilterService extends VpnService {
         Intent intent = new Intent(context, NetFilterService.class);
         intent.putExtra(EXTRA_COMMAND, Command.stop);
         context.startService(intent);
+    }
+
+    /**
+     * 检查当前网络是否是wifi网络
+     */
+    public static boolean isWifiActive(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        return (ni != null && ni.getType() == ConnectivityManager.TYPE_WIFI);
+
     }
 }

@@ -8,33 +8,52 @@ android {
         minSdkVersion 17
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
+    }
+    signingConfigs {
+        myConfig {
+            storeFile file("key.jks")
+            storePassword "123456"
+            keyAlias "junnan"
+            keyPassword "123456"
+
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.myConfig
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
+            signingConfig signingConfigs.myConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    signingConfigs {
 
-        def alias = 'junnan'
-        def password = '123456'
-        def filePath = '../key.jks'
-        debug {
-            keyAlias alias
-            keyPassword password
-            storeFile file(filePath)
-            storePassword(password)
-        }
-        release {
-            keyAlias alias
-            keyPassword password
-            storeFile file(filePath)
-            storePassword(password)
-        }
-    }
+
+//    signingConfigs {
+//
+//        def alias = 'junnan'
+//        def password = '123456'
+//        def filePath = 'key.jks'
+//        debug {
+//            keyAlias alias
+//            keyPassword password
+//            storeFile file(filePath)
+//            storePassword(password)
+//        }
+//        release {
+//            keyAlias alias
+//            keyPassword password
+//            storeFile file(filePath)
+//            storePassword(password)
+//        }
+//    }
 
     dexOptions {
         preDexLibraries false
@@ -78,9 +97,8 @@ tasks.withType(Javadoc) {
 }
 
 
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation 'com.qmuiteam:qmui:2.1.0'
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+//    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
 }
